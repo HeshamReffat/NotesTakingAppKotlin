@@ -12,13 +12,13 @@ import com.hisham.noteappkotlin.model.Note
 @Dao
 interface NoteDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertNote(note: Note):Long
+    suspend fun insertNote(note: Note)
 
     @Update
-    suspend fun updateNote(note: Note):Long
+    suspend fun updateNote(note: Note)
 
     @Delete
-    suspend fun deleteNote(note: Note):Long
+    suspend fun deleteNote(note: Note)
 
     @Query("Select * From NOTES Order by id Desc")
     fun getAllNote(): LiveData<List<Note>>

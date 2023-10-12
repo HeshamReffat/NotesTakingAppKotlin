@@ -1,9 +1,10 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
+//    id("kotlin-kapt")
     id("androidx.navigation.safeargs")
     id("kotlin-parcelize")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -60,7 +61,7 @@ dependencies {
     implementation("androidx.room:room-runtime:$room_version")
 
     // To use Kotlin annotation processing tool (kapt)
-    annotationProcessor("androidx.room:room-compiler:$room_version")
+    ksp("androidx.room:room-compiler:$room_version")
     implementation("androidx.room:room-ktx:$room_version")
 
     //coroutines
@@ -73,6 +74,6 @@ dependencies {
     // ViewModel
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
-    kapt("androidx.lifecycle:lifecycle-compiler:$lifecycle_version")
+    ksp("androidx.lifecycle:lifecycle-compiler:$lifecycle_version")
 
 }
