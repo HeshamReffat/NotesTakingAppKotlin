@@ -14,8 +14,10 @@ abstract class NoteDatabase : RoomDatabase() {
         @Volatile
         private var instance: NoteDatabase? = null
         private val lock = Any()
-        operator fun invoke(context: Context) = instance ?: synchronized(lock) {
-            instance ?: createDatabase(context).also {
+        operator fun invoke(context: Context) = instance ?:
+        synchronized(lock) {
+            instance ?:
+            createDatabase(context).also {
                 instance = it
             }
         }
