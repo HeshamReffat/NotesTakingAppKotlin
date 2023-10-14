@@ -54,15 +54,16 @@ class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextLis
             adapter = noteAdapter
         }
         activity?.let {
-            noteViewModel.getAllNotes().observe(viewLifecycleOwner, { note ->
+            noteViewModel.getAllNotes().observe(viewLifecycleOwner) { note ->
+                print("notees = $note");
                 noteAdapter.differ.submitList(note)
                 updateUI(note)
-            })
+            }
         }
     }
 
     private fun updateUI(notes: List<Note>?) {
-        if (notes!!.isEmpty()) {
+        if (notes!!.isNotEmpty()) {
             binding.cardView.visibility = View.GONE
             binding.recyclerView.visibility = View.VISIBLE
         } else {
@@ -81,15 +82,15 @@ class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextLis
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {
-        // searchNote(query)
+         searchNote(query)
         return false
     }
 
     private fun searchNote(query: String?) {
         val searchQuery = "%$query"
-        noteViewModel.searchNotes(searchQuery).observe(this, { list ->
+        noteViewModel.searchNotes(searchQuery).observe(this) { list ->
             noteAdapter.differ.submitList(list)
-        })
+        }
     }
 
     override fun onQueryTextChange(newText: String?): Boolean {

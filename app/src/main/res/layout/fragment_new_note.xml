@@ -12,8 +12,8 @@
     tools:context=".fragments.NewNoteFragment">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:id="@+id/cardView2"
         android:layout_margin="16dp"
         android:layout_marginStart="16dp"
